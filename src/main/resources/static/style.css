@@ -18,3 +18,14 @@
     text-align: center!important;
     justify-content: center!important;
 }
+
+.person_pic {
+    border-radius: 50%;
+    height:200px;
+    width:200px;
+}
+
+.img-area {
+    height:250px;
+    width:250px;
+}
