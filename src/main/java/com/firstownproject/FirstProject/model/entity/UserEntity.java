@@ -1,9 +1,7 @@
 package com.firstownproject.FirstProject.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,10 +18,13 @@ public class UserEntity extends BaseEntity{
 
     private String password;
 
-    @ManyToOne
-    private EventEntity event;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<UserRoleEntity> userRoles = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<EventEntity> events;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<EventEntity> eventsToAttend;
 
     public String getUsername() {
@@ -71,12 +72,12 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public EventEntity getEvent() {
-        return event;
+    public List<EventEntity> getEvents() {
+        return events;
     }
 
-    public UserEntity setEvent(EventEntity event) {
-        this.event = event;
+    public UserEntity setEvents(List<EventEntity> events) {
+        this.events = events;
         return this;
     }
 
@@ -86,6 +87,15 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setEventsToAttend(List<EventEntity> eventsToAttend) {
         this.eventsToAttend = eventsToAttend;
+        return this;
+    }
+
+    public List<UserRoleEntity> getUserRoles() {
+        return userRoles;
+    }
+
+    public UserEntity setUserRoles(List<UserRoleEntity> userRoles) {
+        this.userRoles = userRoles;
         return this;
     }
 }

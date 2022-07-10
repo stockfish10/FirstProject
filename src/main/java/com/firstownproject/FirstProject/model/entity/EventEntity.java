@@ -24,7 +24,7 @@ public class EventEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private EventPlaceEnum eventPlace;
 
-    @OneToMany(mappedBy = "event")
+    @ManyToMany
     private List<UserEntity> organizer;
 
     @ManyToMany

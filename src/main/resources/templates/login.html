@@ -4,50 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <title>Login</title>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid row">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
         <a class="navbar-brand">eventfinder</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon">
+
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="#navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  href="#">Organize an event</a>
+                    <a class="nav-link" aria-current="page"  href="/">Organize an event</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  href="#">Register</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Login</a>
+                    <a class="nav-link" aria-current="page"  href="/">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="mb-3">
-    <label for="formGroupExampleInput" class="form-label">Example label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-</div>
-<div class="mb-3">
-    <label for="formGroupExampleInput2" class="form-label">Another label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-</div>
+<form th:method ="post"
+        th:action="@{/login}">
+    <div class="mb-3">
+        <label for="username" class="form-label">username</label>
+        <input type="text"
+               th:value="${username}"
+               name="username"
+               class="form-control"
+               id="username" aria-describedby="Username">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="password">
+    </div>
+
+    <p th:if="${bad_credentials}" class="errors alert alert-danger">
+        Invalid username or password.
+    </p>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary" value="Login">Login</button>
+</form>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="../static/app.js"></script>
+<script src="../static/js/app.js"></script>
 </body>
 </html>

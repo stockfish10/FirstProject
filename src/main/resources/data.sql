@@ -13,3 +13,4 @@ INSERT INTO towns (id, name, description, city_id) VALUES
 (7, 'New York', 'Everybodys dream city. Anything we say will not be enough for this city. A must visit.', 3),
 (8, 'Los Angeles', 'Located in the western part of the country, thats where all the celebrities live.', 3),
 (9, 'Texas', 'If you wanna feel american, must come here', 3);
+
