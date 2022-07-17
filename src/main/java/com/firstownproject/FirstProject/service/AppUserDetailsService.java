@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 
@@ -26,7 +27,9 @@ public class AppUserDetailsService implements UserDetailsService {
         return userRepository
                 .findByUsername(username)
                 .map(this::map)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username %s not found!",username)));
+                .orElseThrow(() ->
+                        new UsernameNotFoundException
+                                (String.format("User with username %s not found!",username)));
     }
 
     private UserDetails map(UserEntity userEntity){

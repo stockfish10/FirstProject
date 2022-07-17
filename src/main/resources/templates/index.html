@@ -13,35 +13,11 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand">eventfinder</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon">
+<div th:replace="fragments/navbar">
+    Navbar
+</div>
 
-            </span>
-        </button>
-        <div class="collapse navbar-collapse" id="#navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"  href="/">Organize an event</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"  href="/">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
 <div id="slides" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">

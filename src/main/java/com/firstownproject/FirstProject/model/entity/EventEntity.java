@@ -4,6 +4,7 @@ import com.firstownproject.FirstProject.model.enums.EventPlaceEnum;
 import com.firstownproject.FirstProject.model.enums.EventTypeEnum;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,10 +26,10 @@ public class EventEntity extends BaseEntity {
     private EventPlaceEnum eventPlace;
 
     @ManyToMany
-    private List<UserEntity> organizer;
+    private List<UserEntity> organizer = new ArrayList<>();
 
     @ManyToMany
-    private List<UserEntity> participants;
+    private List<UserEntity> participants = new ArrayList<>();
 
     public CountryEntity getCountry() {
         return country;

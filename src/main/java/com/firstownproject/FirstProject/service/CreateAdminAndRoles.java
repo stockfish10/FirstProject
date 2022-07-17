@@ -5,6 +5,7 @@ import com.firstownproject.FirstProject.model.entity.UserRoleEntity;
 import com.firstownproject.FirstProject.model.enums.UserRoleEnum;
 import com.firstownproject.FirstProject.respository.UserRepository;
 import com.firstownproject.FirstProject.respository.UserRoleRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class CreateAdminAndRoles {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public CreateAdminAndRoles(UserRepository userRepository,
                                UserRoleRepository userRoleRepository,
