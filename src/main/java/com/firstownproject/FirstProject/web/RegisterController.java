@@ -21,8 +21,8 @@ public class RegisterController {
         this.userService = userService;
     }
 
-    @ModelAttribute
-    public void initUserMoedl(Model model) {
+    @ModelAttribute("userModel")
+    public void initUserModel(Model model) {
         model.addAttribute("userModel", new UserRegisterDTO());
     }
 
