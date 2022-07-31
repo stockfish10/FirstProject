@@ -37,6 +37,13 @@ public class UserService {
 
         UserDetails userDetails = appUserDetailsService.loadUserByUsername(newUser.getUsername());
 
+        login(newUser);
+    }
+
+    private void login(UserEntity userEntity) {
+        UserDetails userDetails =
+                appUserDetailsService.loadUserByUsername(userEntity.getUsername());
+
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(
                         userDetails,
@@ -46,7 +53,7 @@ public class UserService {
         SecurityContextHolder.
                 getContext().
                 setAuthentication(auth);
-    }
 
+    }
 
 }

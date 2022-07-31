@@ -100,32 +100,14 @@
         <hr>
         <div class="container-fluid padding">
             <div class="row padding">
-                <div class="col-md-4">
+                <div class="col-md-4"
+                     th:each="country : ${countries}"
+                     th:object="${country}">
                     <div class="card">
-                        <img class="city-img-top" src=""/>
+                        <img class="city-img-top" th:src="@{*{picture}}"/>
                         <div class="card-body">
-                            <h4 class="card-title">City Name</h4>
-                            <p class="card-text">Some text here</p>
-                            <a href="#" class="btn btn-outline-secondary">See more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img class="city-img-top" src=""/>
-                        <div class="card-body">
-                            <h4 class="card-title">City Name</h4>
-                            <p class="card-text">Some text here</p>
-                            <a href="#" class="btn btn-outline-secondary">See more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img class="city-img-top" src=""/>
-                        <div class="card-body">
-                            <h4 class="card-title">City Name</h4>
-                            <p class="card-text">Some text here</p>
+                            <h4 class="card-title" th:text="*{name}">City Name</h4>
+                            <p class="card-text" th:text="*{information}">Some text here</p>
                             <a href="#" class="btn btn-outline-secondary">See more</a>
                         </div>
                     </div>

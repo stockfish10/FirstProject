@@ -1,3 +1,8 @@
+.city-img-top {
+    width: auto;
+    height: 210px;
+}
+
 .navbar {
     background-color: coral!important;
 }
@@ -20,12 +25,15 @@
 }
 
 .person_pic {
-    border-radius: 50%;
-    height:200px;
-    width:200px;
+    border-radius: 50%!important;
+    height:200px!important;
+    width:200px!important;
 }
 
 .img-area {
     height:250px;
     width:250px;
+}
+.person_container {
+
 }

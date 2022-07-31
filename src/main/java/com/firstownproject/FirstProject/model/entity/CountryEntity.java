@@ -11,6 +11,8 @@ public class CountryEntity extends BaseEntity{
 
     private String information;
 
+    private String picture;
+
     @OneToMany
     private List<TownEntity> towns;
 
@@ -38,6 +40,15 @@ public class CountryEntity extends BaseEntity{
 
     public CountryEntity setTowns(List<TownEntity> towns) {
         this.towns = towns;
+        return this;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public CountryEntity setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }
