@@ -3,7 +3,7 @@ INSERT INTO countries (id, name, information,picture) VALUES
 (2, 'France', 'You can hang out at the beach and in the mountains. Has many monuments. Beautiful nature.', '/images/France.jpg'),
 (3, 'USA', 'You can hang out at the beach and in the mountains. Has many monuments. Beautiful nature.', '/images/USA.jpg');
 
-INSERT INTO towns (id, name, description, city_id) VALUES
+INSERT INTO towns (id, name, description, country_id) VALUES
 (1, 'Sofia', 'Capital of Bulgaria. Located in the West side of the country. Has a great night life and also the biggest city in the country', 1),
 (2, 'Varna', 'Second biggest city in the country. Located next to the beach. During the winter the life is "slow", however during the summer period, living there is great', 1),
 (3, 'Veliko Tarnovo', 'Called the "Old Capital" a small city in the center of bulgaria. Has many monuments', 1),

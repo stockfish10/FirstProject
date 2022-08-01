@@ -2,7 +2,10 @@ package com.firstownproject.FirstProject.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "towns")
@@ -13,7 +16,10 @@ public class TownEntity extends BaseEntity{
     private String description;
 
     @ManyToOne
-    private CountryEntity city;
+    private CountryEntity country;
+
+    @OneToMany
+    private List<EventEntity> events = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -33,12 +39,21 @@ public class TownEntity extends BaseEntity{
         return this;
     }
 
-    public CountryEntity getCity() {
-        return city;
+    public CountryEntity getCountry() {
+        return country;
     }
 
-    public TownEntity setCity(CountryEntity city) {
-        this.city = city;
+    public TownEntity setCountry(CountryEntity city) {
+        this.country = city;
+        return this;
+    }
+
+    public List<EventEntity> getEvents() {
+        return events;
+    }
+
+    public TownEntity setEvents(List<EventEntity> events) {
+        this.events = events;
         return this;
     }
 }

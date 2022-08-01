@@ -1,5 +1,8 @@
 package com.firstownproject.FirstProject.model.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CountryViewDTO {
 
     private Long id;
@@ -45,4 +48,5 @@ public class CountryViewDTO {
         this.picture = picture;
         return this;
     }
+
 }

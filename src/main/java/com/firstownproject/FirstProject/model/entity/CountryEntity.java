@@ -1,6 +1,7 @@
 package com.firstownproject.FirstProject.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class CountryEntity extends BaseEntity{
     private String picture;
 
     @OneToMany
-    private List<TownEntity> towns;
+    private List<TownEntity> towns = new ArrayList<>();
 
     public String getName() {
         return name;

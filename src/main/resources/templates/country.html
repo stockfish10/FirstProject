@@ -17,29 +17,35 @@
     Navbar
 </div>
 
-<div class="container">
+<div class="container" th:object="${country}">
     <div class="row welcome text-center">
         <div class="col-12">
-            <h1 class="display-4">Welcome to TownName</h1>
+            <h1 class="display-4">Welcome to <span th:text="*{name}">TownName</span></h1>
         </div>
     </div>
     <div class="row">
         <div class="col-6">
-            <img th:src="/" class="img-thumbnail" alt="CountryPicture">
+            <img th:src="@{*{picture}}" class="img-thumbnail" alt="CountryPicture">
         </div>
         <div class="col-6">
-            <p>Country information</p>
+            <p th:text="*{information}">Country information</p>
         </div>
     </div>
     <div class="row">
-        <h3>Below are the cities in which you can find the best events, which can be found in <span>CountryName</span></h3>
+        <h3>Below are the cities in which you can find the best events, that can be found in <span th:text="*{name}">CountryName</span></h3>
     </div>
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="City">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row padding">
+        <div class="col-md-4"
+             th:each="town : ${towns}"
+             th:object="${town}">
+            <div class="card">
+                <img class="city-img-top" src="/"/>
+                <div class="card-body">
+                    <h4 class="card-title" th:text="*{name}">City Name</h4>
+                    <p class="card-text" th:text="*{description}">Some text here</p>
+                    <a href="#" class="btn btn-outline-secondary">See events</a>
+                </div>
+            </div>
         </div>
     </div>
 
