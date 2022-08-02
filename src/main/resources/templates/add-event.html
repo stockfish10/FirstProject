@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Organize event</title>
+</head>
+<body>
+
+<div th:replace="fragments/navbar">
+    Navbar
+</div>
+
+<div class="container">
+    <h2 class="text-center text-white">Upload Offer</h2>
+    <form method="POST"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="model">Model</label>
+                <select id="model" class="form-control">
+                    <option value="">- Select a model -</option>
+                    <optgroup label="Brand name">
+                        <option>Model</option>
+                    </optgroup>
+                </select>
+                <p class="errors alert alert-danger">
+                    Vechicle model is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class="text-white font-weight-bold">Price</label>
+                <input id="price" type="number" min="0" step="100" class="form-control"
+                       placeholder="Suggested price"/>
+                <p  class="errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
+                <select id="engine" class="form-control">
+                    <option value="">- Select engine type -</option>
+                    <option>
+                        Engine type
+                    </option>
+                </select>
+                <p class="errors alert alert-danger">
+                    Engine type is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
+                <select id="transmission" class="form-control">
+                    <option value="">- Select transmission type -</option>
+                    <option> Transmission type
+                    </option>
+                </select>
+                <p class="errors alert alert-danger">
+                    Transmission type is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="year" class="text-white font-weight-bold">Year</label>
+                <input id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                       placeholder="Manufacturing year"/>
+                <p class="errors alert alert-danger">
+                    Manufacturing year is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="mileage" class="text-white font-weight-bold">Mileage</label>
+                <input id="mileage" type="number" min="0" max="900000" step="1000"
+                       class="form-control"
+                       placeholder="Mileage in kilometers"/>
+                <p class="errors alert alert-danger">
+                    Mileage in kilometers is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="description">Description</label>
+            <textarea id="description" type="textarea" class="form-control" rows="3"
+                      placeholder="Description"></textarea>
+            <p class="errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
+            <input id="imageUrl" type="url" class="form-control"
+                   placeholder="Put vehicle image URL here">
+            <p class="errors alert alert-danger">
+                Vehicle image URL is required.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit Offer"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/js/app.js}">
+</body>
+</html>

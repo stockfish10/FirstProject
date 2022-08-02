@@ -25,6 +25,8 @@ public class EventEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private EventPlaceEnum eventPlace;
 
+    private String address;
+
     @ManyToMany
     private List<UserEntity> organizer = new ArrayList<>();
 
@@ -91,6 +93,15 @@ public class EventEntity extends BaseEntity {
 
     public EventEntity setParticipants(List<UserEntity> participants) {
         this.participants = participants;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public EventEntity setAddress(String address) {
+        this.address = address;
         return this;
     }
 }
