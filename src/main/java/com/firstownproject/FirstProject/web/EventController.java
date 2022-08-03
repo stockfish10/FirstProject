@@ -1,8 +1,11 @@
 package com.firstownproject.FirstProject.web;
 
 import com.firstownproject.FirstProject.model.dto.EventDTO;
-import com.firstownproject.FirstProject.model.dto.UserRegisterDTO;
+import com.firstownproject.FirstProject.service.CountryService;
 import com.firstownproject.FirstProject.service.EventService;
+import com.firstownproject.FirstProject.service.TownService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,14 +20,19 @@ import javax.validation.Valid;
 public class EventController {
 
     private final EventService eventService;
+    private final CountryService countryService;
+    private final TownService townService;
 
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService, CountryService countryService, TownService townService) {
         this.eventService = eventService;
+        this.countryService = countryService;
+        this.townService = townService;
     }
 
     @ModelAttribute("eventModel")
     public void initUserModel(Model model) {
         model.addAttribute("eventModel", new EventDTO());
+        model.addAttribute("countries", countryService.getAllCountries());
     }
 
     @GetMapping("/events/add")
@@ -33,20 +41,22 @@ public class EventController {
     }
 
 
-//    @PostMapping("/events/add")
-//    public String addEvent(@Valid EventDTO eventModel,
-//                           BindingResult bindingResult,
-//                           RedirectAttributes redirectAttributes) {
-//
-//        if (bindingResult.hasErrors()){
-//            redirectAttributes.addFlashAttribute("eventModel", eventModel);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.eventModel", bindingResult);
-//
-//            return "redirect:/add-event";
-//        }
-//
-//        return "redirect:/";
-//    }
+    @PostMapping("/events/add")
+    public String addEvent(@Valid EventDTO eventModel,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           @AuthenticationPrincipal UserDetails userDetails) {
+
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("eventModel", eventModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.eventModel", bindingResult);
+
+            return "redirect:/add-event";
+        }
+
+        eventService.addEvent(eventModel,userDetails);
+        return "redirect:/";
+    }
 
 
 

@@ -18,54 +18,80 @@
 </div>
 
 <div class="container">
-    <h2 class="text-center text-white">Upload Offer</h2>
-    <form method="POST"
+    <h2 class="text-center text-orange">Organize event</h2>
+    <form th:method="post"
+          th:action="@{/evens/add}"
+          th:object="${eventModel}"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
 
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="model">Model</label>
-                <select id="model" class="form-control">
-                    <option value="">- Select a model -</option>
-                    <optgroup label="Brand name">
-                        <option>Model</option>
+                <label class="text-center text-Orange font-weight-bold" for="country">Country</label>
+                <select id="country"
+                        name="country"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">Select a country</option>
+                    <optgroup th:each="co : ${countries}"
+                              th:label="${co.name}">
+                        <option th:each="town : ${co.towns}"
+                                th:text="${town.name}"
+                                th:value="${town.id}"
+                                th:selected="*{country} == ${town.id}">Country</option>
                     </optgroup>
                 </select>
                 <p class="errors alert alert-danger">
-                    Vechicle model is required.
+                    Country is required.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
-                <label for="price" class="text-white font-weight-bold">Price</label>
-                <input id="price" type="number" min="0" step="100" class="form-control"
-                       placeholder="Suggested price"/>
-                <p  class="errors alert alert-danger">
-                    Suggested price is required.
-                </p>
+                <label for="town" class="text-orange font-weight-bold">Town</label>
+                <select id="town"
+                        name="town"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">Select a town</option>
+                    <optgroup >
+                        <option>Town</option>
+                    </optgroup>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
-                <select id="engine" class="form-control">
-                    <option value="">- Select engine type -</option>
-                    <option>
-                        Engine type
+                <label class="text-center text-white font-weight-bold" for="type">EventType</label>
+                <select id="type"
+                        name="type"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">Select Event Type</option>
+                    <option th:each="et : ${T(com.firstownproject.FirstProject.model.enums.EventTypeEnum).values()}"
+                            th:text="${et}"
+                            th:value="${et}"
+                            th:selected="${et} == *{type}">
+                        Event Type
                     </option>
                 </select>
-                <p class="errors alert alert-danger">
-                    Engine type is required.
+                <p class="invalid-feedback errors alert alert-danger">
+                    Event type is required.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
-                <select id="transmission" class="form-control">
-                    <option value="">- Select transmission type -</option>
-                    <option> Transmission type
+                <label class="text-center text-orange font-weight-bold" for="place">Place</label>
+                <select id="place"
+                        name="place"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">Select Place</option>
+                    <option th:each="place : ${T(com.firstownproject.FirstProject.model.enums.EventPlaceEnum).values()}"
+                            th:text="${place}"
+                            th:value="${place}"
+                            th:selected="${place} == *{place}">
+                        Place
                     </option>
                 </select>
-                <p class="errors alert alert-danger">
-                    Transmission type is required.
+                <p class="invalid-feedback errors alert alert-danger">
+                    Place is required.
                 </p>
             </div>
         </div>

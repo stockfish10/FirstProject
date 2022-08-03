@@ -13,6 +13,8 @@ public class CountryViewDTO {
 
     private String picture;
 
+    private List<TownViewDTO> towns = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -49,4 +51,12 @@ public class CountryViewDTO {
         return this;
     }
 
+    public List<TownViewDTO> getTowns() {
+        return towns;
+    }
+
+    public CountryViewDTO setTowns(List<TownViewDTO> towns) {
+        this.towns = towns;
+        return this;
+    }
 }

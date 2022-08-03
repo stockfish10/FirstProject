@@ -5,9 +5,7 @@ import com.firstownproject.FirstProject.model.entity.TownEntity;
 import com.firstownproject.FirstProject.model.enums.EventPlaceEnum;
 import com.firstownproject.FirstProject.model.enums.EventTypeEnum;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,10 +18,10 @@ public class EventDTO {
     private TownEntity town;
 
     @NotNull
-    private String type;
+    private EventTypeEnum type;
 
     @NotNull
-    private String place;
+    private EventPlaceEnum place;
 
     @NotNull
     @Size(min = 50,max = 5000)
@@ -51,20 +49,20 @@ public class EventDTO {
         return this;
     }
 
-    public String getType() {
+    public EventTypeEnum getType() {
         return type;
     }
 
-    public EventDTO setType(String type) {
+    public EventDTO setType(EventTypeEnum type) {
         this.type = type;
         return this;
     }
 
-    public String getPlace() {
+    public EventPlaceEnum getPlace() {
         return place;
     }
 
-    public EventDTO setPlace(String place) {
+    public EventDTO setPlace(EventPlaceEnum place) {
         this.place = place;
         return this;
     }

@@ -27,8 +27,8 @@ public class EventEntity extends BaseEntity {
 
     private String address;
 
-    @ManyToMany
-    private List<UserEntity> organizer = new ArrayList<>();
+    @ManyToOne
+    private UserEntity organizer;
 
     @ManyToMany
     private List<UserEntity> participants = new ArrayList<>();
@@ -78,11 +78,11 @@ public class EventEntity extends BaseEntity {
         return this;
     }
 
-    public List<UserEntity> getOrganizer() {
+    public UserEntity getOrganizer() {
         return organizer;
     }
 
-    public EventEntity setOrganizer(List<UserEntity> organizer) {
+    public EventEntity setOrganizer(UserEntity organizer) {
         this.organizer = organizer;
         return this;
     }

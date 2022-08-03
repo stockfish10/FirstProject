@@ -21,7 +21,7 @@ public class UserEntity extends BaseEntity{
     @ManyToMany(fetch = FetchType.LAZY)
     private List<UserRoleEntity> userRoles = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany
     private List<EventEntity> events;
 
     @ManyToMany(fetch = FetchType.LAZY)
