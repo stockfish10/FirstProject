@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-crypto:5.7.1'

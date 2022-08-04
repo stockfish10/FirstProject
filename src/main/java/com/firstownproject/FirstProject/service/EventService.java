@@ -5,10 +5,8 @@ import com.firstownproject.FirstProject.model.dto.EventDTO;
 import com.firstownproject.FirstProject.model.entity.EventEntity;
 import com.firstownproject.FirstProject.model.entity.UserEntity;
 import com.firstownproject.FirstProject.respository.EventRepository;
+import com.firstownproject.FirstProject.respository.TownRepository;
 import com.firstownproject.FirstProject.respository.UserRepository;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,13 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final TownRepository townRepository;
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-    public EventService(EventRepository eventRepository, UserRepository userRepository) {
+    public EventService(EventRepository eventRepository, UserRepository userRepository, TownRepository townRepository) {
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
+        this.townRepository = townRepository;
     }
 
 

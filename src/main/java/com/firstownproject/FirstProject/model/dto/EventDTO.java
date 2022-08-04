@@ -96,4 +96,5 @@ public class EventDTO {
         this.date = date;
         return this;
     }
+
 }
