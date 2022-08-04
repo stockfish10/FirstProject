@@ -3,7 +3,7 @@ package com.firstownproject.FirstProject.model.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryViewDTO {
+public class CountryDTO {
 
     private Long id;
 
@@ -19,7 +19,7 @@ public class CountryViewDTO {
         return id;
     }
 
-    public CountryViewDTO setId(Long id) {
+    public CountryDTO setId(Long id) {
         this.id = id;
         return this;
     }
@@ -28,7 +28,7 @@ public class CountryViewDTO {
         return name;
     }
 
-    public CountryViewDTO setName(String name) {
+    public CountryDTO setName(String name) {
         this.name = name;
         return this;
     }
@@ -37,7 +37,7 @@ public class CountryViewDTO {
         return information;
     }
 
-    public CountryViewDTO setInformation(String information) {
+    public CountryDTO setInformation(String information) {
         this.information = information;
         return this;
     }
@@ -46,7 +46,7 @@ public class CountryViewDTO {
         return picture;
     }
 
-    public CountryViewDTO setPicture(String picture) {
+    public CountryDTO setPicture(String picture) {
         this.picture = picture;
         return this;
     }
@@ -55,7 +55,7 @@ public class CountryViewDTO {
         return towns;
     }
 
-    public CountryViewDTO setTowns(List<TownViewDTO> towns) {
+    public CountryDTO setTowns(List<TownViewDTO> towns) {
         this.towns = towns;
         return this;
     }

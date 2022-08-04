@@ -1,7 +1,7 @@
 package com.firstownproject.FirstProject.service;
 
 import com.firstownproject.FirstProject.exceptions.CountryNotFoundException;
-import com.firstownproject.FirstProject.model.dto.CountryViewDTO;
+import com.firstownproject.FirstProject.model.dto.CountryDTO;
 import com.firstownproject.FirstProject.model.dto.TownViewDTO;
 import com.firstownproject.FirstProject.model.entity.CountryEntity;
 import com.firstownproject.FirstProject.model.entity.TownEntity;
@@ -16,35 +16,47 @@ import java.util.stream.Collectors;
 public class CountryService {
 
     private final CountryRepository countryRepository;
+    private final TownRepository townRepository;
 
-    public CountryService(CountryRepository countryRepository) {
+    public CountryService(CountryRepository countryRepository, TownRepository townRepository) {
         this.countryRepository = countryRepository;
+        this.townRepository = townRepository;
     }
 
-    public List<CountryViewDTO> getAllCountries() {
+    public List<CountryDTO> getAllCountries() {
         return countryRepository.findAll()
                 .stream()
                 .map(this::map)
                 .collect(Collectors.toList());
     }
 
-    private CountryViewDTO map(CountryEntity co) {
-        CountryViewDTO newCountryView = new CountryViewDTO();
+    private CountryDTO map(CountryEntity co) {
+        CountryDTO newCountryView = new CountryDTO();
 
         return newCountryView.setId(co.getId())
                 .setInformation(co.getInformation())
                 .setName(co.getName())
-                .setPicture(co.getPicture());
+                .setPicture(co.getPicture())
+                .setTowns(getTownsForCountry(co));
     }
 
-    public CountryViewDTO getCountry(Long id){
+    public CountryDTO getCountry(Long id){
         return countryRepository.findById(id)
-                .map(country -> new CountryViewDTO()
+                .map(country -> new CountryDTO()
                         .setName(country.getName())
                         .setId(country.getId())
                         .setPicture(country.getPicture())
-                        .setInformation(country.getInformation())).
+                        .setInformation(country.getInformation()).
+                        setTowns(getTownsForCountry(country))).
                 orElseThrow(CountryNotFoundException::new);
+    }
+
+    private List<TownViewDTO> getTownsForCountry(CountryEntity country) {
+        return townRepository.
+                findTownEntitiesByCountry_Id(country.getId()).
+                stream().
+                map(this::mapTown).
+                collect(Collectors.toList());
     }
 
     private TownViewDTO mapTown(TownEntity town) {

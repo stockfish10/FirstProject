@@ -1,6 +1,6 @@
 package com.firstownproject.FirstProject.web;
 
-import com.firstownproject.FirstProject.model.dto.CountryViewDTO;
+import com.firstownproject.FirstProject.model.dto.CountryDTO;
 import com.firstownproject.FirstProject.service.CountryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String getAllCountries(Model model) {
-        List<CountryViewDTO> countries = countryService.getAllCountries();
+        List<CountryDTO> countries = countryService.getAllCountries();
         model.addAttribute("countries", countries);
 
         return "index";

@@ -5,6 +5,7 @@ import com.firstownproject.FirstProject.model.enums.EventTypeEnum;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,8 @@ public class EventEntity extends BaseEntity {
 
     @ManyToOne
     private UserEntity organizer;
+
+    private Date date;
 
     @ManyToMany
     private List<UserEntity> participants = new ArrayList<>();
@@ -102,6 +105,15 @@ public class EventEntity extends BaseEntity {
 
     public EventEntity setAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public EventEntity setDate(Date date) {
+        this.date = date;
         return this;
     }
 }

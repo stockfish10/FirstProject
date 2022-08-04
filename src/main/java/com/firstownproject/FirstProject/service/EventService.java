@@ -12,11 +12,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 @Service
 public class EventService {
 
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
     public EventService(EventRepository eventRepository, UserRepository userRepository) {
         this.eventRepository = eventRepository;
@@ -24,14 +29,15 @@ public class EventService {
     }
 
 
-    public void addEvent(EventDTO eventModel,UserDetails userDetails) {
+    public void addEvent(EventDTO eventAddDto,UserDetails userDetails) throws ParseException {
         EventEntity newEvent = new EventEntity().
-                setCountry(eventModel.getCountry()).
-                setTown(eventModel.getTown()).
-                setEventType(eventModel.getType()).
-                setEventPlace(eventModel.getPlace()).
-                setAddress(eventModel.getAddress()).
-                setDescription(eventModel.getDescription());
+                setCountry(eventAddDto.getCountry()).
+                setTown(eventAddDto.getTown()).
+                setEventType(eventAddDto.getType()).
+                setEventPlace(eventAddDto.getPlace()).
+                setAddress(eventAddDto.getAddress()).
+                setDescription(eventAddDto.getDescription()).
+                setDate(formatter.parse(eventAddDto.getDate()));
 
         UserEntity currentUser = userRepository.findByUsername(userDetails.getUsername()).get();
 

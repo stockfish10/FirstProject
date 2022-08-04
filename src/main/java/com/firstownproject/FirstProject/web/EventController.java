@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @Controller
 public class EventController {
@@ -45,13 +46,13 @@ public class EventController {
     public String addEvent(@Valid EventDTO eventModel,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
-                           @AuthenticationPrincipal UserDetails userDetails) {
+                           @AuthenticationPrincipal UserDetails userDetails) throws ParseException {
 
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("eventModel", eventModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.eventModel", bindingResult);
 
-            return "redirect:/add-event";
+            return "redirect:/events/add";
         }
 
         eventService.addEvent(eventModel,userDetails);

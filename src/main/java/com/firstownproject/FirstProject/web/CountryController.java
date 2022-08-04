@@ -1,6 +1,6 @@
 package com.firstownproject.FirstProject.web;
 
-import com.firstownproject.FirstProject.model.dto.CountryViewDTO;
+import com.firstownproject.FirstProject.model.dto.CountryDTO;
 import com.firstownproject.FirstProject.model.dto.TownViewDTO;
 import com.firstownproject.FirstProject.service.CountryService;
 import com.firstownproject.FirstProject.service.TownService;
@@ -15,20 +15,16 @@ import java.util.List;
 public class CountryController {
 
     private final CountryService countryService;
-    private final TownService townService;
 
-    public CountryController(CountryService countryService, TownService townService) {
+    public CountryController(CountryService countryService) {
         this.countryService = countryService;
-        this.townService = townService;
     }
 
     @GetMapping("/country/{id}")
     public String getCountry(@PathVariable Long id,
                              Model model){
-        CountryViewDTO country = countryService.getCountry(id);
-        List<TownViewDTO> townsForCountry = townService.getTownsForCountry(id);
+        CountryDTO country = countryService.getCountry(id);
         model.addAttribute("country", country);
-        model.addAttribute("towns", townsForCountry);
 
 
         return "country";

@@ -31,6 +31,9 @@ public class EventDTO {
     @Size(min = 5, max = 50)
     private String address;
 
+    @NotNull
+    private String date;
+
     public CountryEntity getCountry() {
         return country;
     }
@@ -82,6 +85,15 @@ public class EventDTO {
 
     public EventDTO setAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public EventDTO setDate(String date) {
+        this.date = date;
         return this;
     }
 }
