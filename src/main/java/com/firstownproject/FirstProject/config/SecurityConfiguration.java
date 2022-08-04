@@ -2,11 +2,9 @@ package com.firstownproject.FirstProject.config;
 
 import com.firstownproject.FirstProject.respository.UserRepository;
 import com.firstownproject.FirstProject.service.AppUserDetailsService;
-import com.firstownproject.FirstProject.service.UserService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,7 +50,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return new AppUserDetailsService(userRepository);
+    public UserDetailsService userDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return new AppUserDetailsService(userRepository, passwordEncoder);
     }
 }
