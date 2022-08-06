@@ -1,4 +1,4 @@
-package com.firstownproject.FirstProject.model.dto;
+package com.firstownproject.FirstProject.model.dto.userDTOs;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;

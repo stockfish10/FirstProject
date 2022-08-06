@@ -1,6 +1,7 @@
 package com.firstownproject.FirstProject.web;
 
-import com.firstownproject.FirstProject.model.dto.EventDTO;
+import com.firstownproject.FirstProject.model.dto.eventDTOs.EventDTO;
+import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
 import com.firstownproject.FirstProject.service.CountryService;
 import com.firstownproject.FirstProject.service.EventService;
 import com.firstownproject.FirstProject.service.TownService;
@@ -11,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.List;
 
 @Controller
 public class EventController {
@@ -59,12 +62,20 @@ public class EventController {
         return "redirect:/";
     }
 
+    @GetMapping("/events")
+    public String getAllEvents(Model model) {
+        List<EventShowDTO> eventShowDTOS = eventService.getAllEvents();
+        model.addAttribute("allEvents", eventShowDTOS);
+
+        return "/all-events";
+    }
 
 
-//    @GetMapping("/town{id}/events")
-//    public String getAllEventsForTown(@PathVariable Long id, Model model) {
-//
-//
-//        return "/events";
-//    }
+    @GetMapping("/events/{id}/")
+    public String getAllEventsForTown(@PathVariable("id") Long townId, Model model) {
+        List<EventShowDTO> eventDTOs = eventService.getEventsForTown(townId);
+        model.addAttribute("events", eventDTOs);
+
+        return "/events";
+    }
 }

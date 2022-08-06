@@ -1,4 +1,4 @@
-package com.firstownproject.FirstProject.model.dto;
+package com.firstownproject.FirstProject.model.dto.eventDTOs;
 
 import com.firstownproject.FirstProject.model.entity.CountryEntity;
 import com.firstownproject.FirstProject.model.entity.TownEntity;

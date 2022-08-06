@@ -1,8 +1,8 @@
 package com.firstownproject.FirstProject.service;
 
 import com.firstownproject.FirstProject.exceptions.CountryNotFoundException;
-import com.firstownproject.FirstProject.model.dto.CountryDTO;
-import com.firstownproject.FirstProject.model.dto.TownViewDTO;
+import com.firstownproject.FirstProject.model.dto.countryDTOs.CountryDTO;
+import com.firstownproject.FirstProject.model.dto.townDTOs.TownViewDTO;
 import com.firstownproject.FirstProject.model.entity.CountryEntity;
 import com.firstownproject.FirstProject.model.entity.TownEntity;
 import com.firstownproject.FirstProject.respository.CountryRepository;

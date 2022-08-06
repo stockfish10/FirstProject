@@ -25,6 +25,9 @@
                 <li class="nav-item active">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link active" aria-current="page" th:href="@{/events}">Events</a>
+                </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link" aria-current="page"  th:href="@{/events/add}">Organize an event</a>
                 </li>

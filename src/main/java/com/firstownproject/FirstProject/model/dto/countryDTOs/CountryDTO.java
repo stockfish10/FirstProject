@@ -1,4 +1,6 @@
-package com.firstownproject.FirstProject.model.dto;
+package com.firstownproject.FirstProject.model.dto.countryDTOs;
+
+import com.firstownproject.FirstProject.model.dto.townDTOs.TownViewDTO;
 
 import java.util.ArrayList;
 import java.util.List;

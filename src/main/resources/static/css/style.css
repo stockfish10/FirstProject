@@ -34,6 +34,11 @@
     height:250px;
     width:250px;
 }
-.person_container {
-
+.all-events-welcome {
+    padding: 10px;
+    margin: 10px;
+}
+.container-all-events {
+    padding: 10px;
+    margin: 10px;
 }

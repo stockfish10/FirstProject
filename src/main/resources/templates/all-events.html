@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div th:replace="fragments/navbar">
+    Navbar
+</div>
+
+<div class="row welcome text-center all-events-welcome">
+    <div class="col-12">
+        <h2 class="display-4">Find all the best things to do all around the world!</h2>
+    </div>
+</div>
+
+<div class="container justify-content-center text-center container-all-events"
+     th:each="event : ${allEvents}"
+     th:object="${event}">
+    <div class="row justify-content-center text-center">
+        <div class="col col-4">
+            <h4 class="text-orange" th:text="*{description}">Event information</h4>
+        </div>
+        <div class="col col-6 align-content-end">
+            <div class="row">
+                <img class="city-img-top rounded float-end" src="/"/>
+            </div>
+            <div class="row">
+                <p>Event location: <span th:text="*{eventPlace}">Event location</span></p>
+            </div>
+            <div class="row">
+                <p>Address: <span th:text="*{address}">Address</span></p>
+            </div>
+            <div class="row">
+                <p>Date: <span th:text="*{date}">Date</span></p>
+            </div>
+            <div class="row">
+                <p>Type: <span th:text="*{eventType}">Event type</span></p>
+            </div>
+            <div class="row">
+                <p>Organizer: <span th:text="*{organizer}">Organizer</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="row button-container">
+        <div class="col col-5">
+            <a href="#" class="btn btn-outline-secondary">Check out the event</a>
+        </div>
+        <div class="col col-5">
+            <a href="#" class="btn btn-outline-secondary">Sign up for the event</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

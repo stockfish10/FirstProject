@@ -1,6 +1,6 @@
 package com.firstownproject.FirstProject.web;
 
-import com.firstownproject.FirstProject.model.dto.UserRegisterDTO;
+import com.firstownproject.FirstProject.model.dto.userDTOs.UserRegisterDTO;
 import com.firstownproject.FirstProject.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

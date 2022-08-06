@@ -1,6 +1,6 @@
 package com.firstownproject.FirstProject.service;
 
-import com.firstownproject.FirstProject.model.dto.UserRegisterDTO;
+import com.firstownproject.FirstProject.model.dto.userDTOs.UserRegisterDTO;
 import com.firstownproject.FirstProject.model.entity.UserEntity;
 import com.firstownproject.FirstProject.respository.UserRepository;
 import org.modelmapper.ModelMapper;

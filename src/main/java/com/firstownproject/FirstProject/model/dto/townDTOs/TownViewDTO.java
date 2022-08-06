@@ -1,12 +1,4 @@
-package com.firstownproject.FirstProject.model.dto;
-
-import com.firstownproject.FirstProject.model.entity.CountryEntity;
-import com.firstownproject.FirstProject.model.entity.EventEntity;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+package com.firstownproject.FirstProject.model.dto.townDTOs;
 
 public class TownViewDTO {
 

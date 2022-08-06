@@ -1,4 +1,4 @@
-package com.firstownproject.FirstProject.model.dto;
+package com.firstownproject.FirstProject.model.dto.userDTOs;
 
 import com.firstownproject.FirstProject.model.validation.PasswordMatch;
 import com.firstownproject.FirstProject.model.validation.UniqueEmail;

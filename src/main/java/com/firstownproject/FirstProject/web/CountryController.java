@@ -1,15 +1,11 @@
 package com.firstownproject.FirstProject.web;
 
-import com.firstownproject.FirstProject.model.dto.CountryDTO;
-import com.firstownproject.FirstProject.model.dto.TownViewDTO;
+import com.firstownproject.FirstProject.model.dto.countryDTOs.CountryDTO;
 import com.firstownproject.FirstProject.service.CountryService;
-import com.firstownproject.FirstProject.service.TownService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 @Controller
 public class CountryController {

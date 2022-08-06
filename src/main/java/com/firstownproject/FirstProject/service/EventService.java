@@ -1,7 +1,8 @@
 package com.firstownproject.FirstProject.service;
 
 
-import com.firstownproject.FirstProject.model.dto.EventDTO;
+import com.firstownproject.FirstProject.model.dto.eventDTOs.EventDTO;
+import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
 import com.firstownproject.FirstProject.model.entity.EventEntity;
 import com.firstownproject.FirstProject.model.entity.UserEntity;
 import com.firstownproject.FirstProject.respository.EventRepository;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -44,5 +47,34 @@ public class EventService {
         newEvent.setOrganizer(currentUser);
 
         eventRepository.save(newEvent);
+    }
+
+    public List<EventShowDTO> getEventsForTown(Long id) {
+        return eventRepository.findTownByTown_id(id).
+                stream().
+                map(this::map).
+                collect(Collectors.toList());
+
+    }
+
+    private EventShowDTO map(EventEntity eventEntity) {
+        EventShowDTO newEvent = new EventShowDTO();
+
+        return newEvent.
+                setCountry(eventEntity.getCountry().getName()).
+                setTown(eventEntity.getTown().getName()).
+                setEventType(eventEntity.getEventType().toString()).
+                setEventPlace(eventEntity.getEventPlace().toString()).
+                setAddress(eventEntity.getAddress()).
+                setOrganizer(eventEntity.getOrganizer().getFullName()).
+                setDescription(eventEntity.getDescription()).
+                setDate(eventEntity.getDate());
+    }
+
+    public List<EventShowDTO> getAllEvents() {
+        return eventRepository.findAll().
+                stream().
+                map(this::map).
+                collect(Collectors.toList());
     }
 }

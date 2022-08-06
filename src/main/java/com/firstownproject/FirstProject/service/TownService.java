@@ -1,6 +1,6 @@
 package com.firstownproject.FirstProject.service;
 
-import com.firstownproject.FirstProject.model.dto.TownViewDTO;
+import com.firstownproject.FirstProject.model.dto.townDTOs.TownViewDTO;
 import com.firstownproject.FirstProject.model.entity.TownEntity;
 import com.firstownproject.FirstProject.respository.TownRepository;
 import org.springframework.stereotype.Service;

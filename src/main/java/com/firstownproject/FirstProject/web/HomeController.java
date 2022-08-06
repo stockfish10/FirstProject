@@ -1,6 +1,6 @@
 package com.firstownproject.FirstProject.web;
 
-import com.firstownproject.FirstProject.model.dto.CountryDTO;
+import com.firstownproject.FirstProject.model.dto.countryDTOs.CountryDTO;
 import com.firstownproject.FirstProject.service.CountryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
