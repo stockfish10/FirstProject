@@ -22,21 +22,21 @@ import java.util.Locale;
 @Service
 public class CreateEvents {
 
-
-
     private final EventRepository eventRepository;
     private final CountryRepository countryRepository;
     private final UserRepository userRepository;
     private final TownRepository townRepository;
+    private final EventService eventService;
     private final Path path = Path.of("src", "main", "resources", "files", "events.txt");
     private final BufferedReader br = new BufferedReader(new FileReader(path.toAbsolutePath().toString()));
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-    public CreateEvents(EventRepository eventRepository, CountryRepository countryRepository, UserRepository userRepository, TownRepository townRepository) throws FileNotFoundException {
+    public CreateEvents(EventRepository eventRepository, CountryRepository countryRepository, UserRepository userRepository, TownRepository townRepository, EventService eventService) throws FileNotFoundException {
         this.eventRepository = eventRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.townRepository = townRepository;
+        this.eventService = eventService;
     }
 
     public void createEvents() {
@@ -56,7 +56,8 @@ public class CreateEvents {
                             setEventType(EventTypeEnum.valueOf(currentEvent.get(5))).
                             setCountry(countryRepository.findById(Long.valueOf(currentEvent.get(6))).get()).
                             setOrganizer(userRepository.findById(Long.valueOf(currentEvent.get(7))).get()).
-                            setTown(townRepository.findById(Long.valueOf(currentEvent.get(8))).get());
+                            setTown(townRepository.findById(Long.valueOf(currentEvent.get(8))).get()).
+                            setPicture(eventService.setEventPicture(EventTypeEnum.valueOf(currentEvent.get(5)).toString()));
 
                     eventRepository.save(newEvent);
                     line = br.readLine();
@@ -67,4 +68,6 @@ public class CreateEvents {
 
         }
     }
+
+
 }

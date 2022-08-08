@@ -5,6 +5,8 @@ import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
 import com.firstownproject.FirstProject.service.CountryService;
 import com.firstownproject.FirstProject.service.EventService;
 import com.firstownproject.FirstProject.service.TownService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -63,9 +65,10 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public String getAllEvents(Model model) {
-        List<EventShowDTO> eventShowDTOS = eventService.getAllEvents();
-        model.addAttribute("allEvents", eventShowDTOS);
+    public String getAllEvents(Model model,
+                               @PageableDefault(page = 0,size = 5)
+                               Pageable pageable) {
+        model.addAttribute("allEvents", eventService.getAllEvents(pageable));
 
         return "/all-events";
     }

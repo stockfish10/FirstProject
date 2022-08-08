@@ -8,6 +8,8 @@ import com.firstownproject.FirstProject.model.entity.UserEntity;
 import com.firstownproject.FirstProject.respository.EventRepository;
 import com.firstownproject.FirstProject.respository.TownRepository;
 import com.firstownproject.FirstProject.respository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +70,8 @@ public class EventService {
                 setAddress(eventEntity.getAddress()).
                 setOrganizer(eventEntity.getOrganizer().getFullName()).
                 setDescription(eventEntity.getDescription()).
-                setDate(eventEntity.getDate());
+                setDate(eventEntity.getDate()).
+                setPicture(eventEntity.getPicture());
     }
 
     public List<EventShowDTO> getAllEvents() {
@@ -76,5 +79,26 @@ public class EventService {
                 stream().
                 map(this::map).
                 collect(Collectors.toList());
+    }
+
+    public Page<EventShowDTO> getAllEvents(Pageable pageable) {
+        return eventRepository.
+                findAll(pageable).
+                map(this::map);
+    }
+
+    public String setEventPicture(String eventType) {
+        String type = eventType.toLowerCase();
+
+        return switch (type) {
+            case "music" -> "/images/music.jpg";
+            case "health" -> "/images/health.jpg";
+            case "hobbies" -> "/images/hobbies.jpg";
+            case "business" -> "/images/business.jpg";
+            case "foodanddrink" -> "/images/food.jpg";
+            case "sportsandfitness" -> "/images/sports.jpg";
+            case "travelandoutdoor" -> "/images/travel.jpg";
+            default -> "";
+        };
     }
 }

@@ -31,6 +31,8 @@ public class EventEntity extends BaseEntity {
     @ManyToOne
     private UserEntity organizer;
 
+    private String picture;
+
     private Date date;
 
     @ManyToMany
@@ -114,6 +116,15 @@ public class EventEntity extends BaseEntity {
 
     public EventEntity setDate(Date date) {
         this.date = date;
+        return this;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public EventEntity setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

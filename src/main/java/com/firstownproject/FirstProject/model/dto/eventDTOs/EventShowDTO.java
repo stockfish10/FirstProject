@@ -31,6 +31,8 @@ public class EventShowDTO {
 
     private String organizer;
 
+    private String picture;
+
     private Date date;
 
 
@@ -103,6 +105,15 @@ public class EventShowDTO {
 
     public EventShowDTO setDate(Date date) {
         this.date = date;
+        return this;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public EventShowDTO setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

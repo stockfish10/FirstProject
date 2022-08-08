@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -20,7 +21,7 @@
 </div>
 
 <div class="container justify-content-center text-center container-all-events"
-     th:each="event : ${allEvents}"
+     th:each="event : ${allEvents.getContent()}"
      th:object="${event}">
     <div class="row justify-content-center text-center">
         <div class="col col-4">
@@ -28,13 +29,16 @@
         </div>
         <div class="col col-6 align-content-end">
             <div class="row">
-                <img class="city-img-top rounded float-end" src="/"/>
+                <img class="city-img-top rounded float-end" th:src="@{*{picture}}"/>
             </div>
             <div class="row">
-                <p>Event location: <span th:text="*{eventPlace}">Event location</span></p>
+                <p>Country: <span th:text="*{country}">Country</span><span>, </span><span th:text="*{town}">Town</span></p>
             </div>
             <div class="row">
                 <p>Address: <span th:text="*{address}">Address</span></p>
+            </div>
+            <div class="row">
+                <p>Event location: <span th:text="*{eventPlace}">Event location</span></p>
             </div>
             <div class="row">
                 <p>Date: <span th:text="*{date}">Date</span></p>
@@ -55,6 +59,45 @@
             <a href="#" class="btn btn-outline-secondary">Sign up for the event</a>
         </div>
     </div>
+</div>
+
+<div class="container-fluid row justify-content-center">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#">First</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allEvents.hasPrevious() ? '' : 'disabled'}">
+                <a th:if="${allEvents.hasPrevious()}"
+                   th:href="@{/events/(size=${allEvents.getSize()},page=${allEvents.getNumber()-1})}"
+                   class="page-link">Previous</a>
+                <a th:unless="${allEvents.hasPrevious()}"
+                        class="page-link" href="#">Previous</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${allEvents.hasNext() ? '' : 'disabled'}">
+                <a th:if="${allEvents.hasNext()}"
+                   th:href="@{/events/(size=${allEvents.getSize()},page=${allEvents.getNumber()+1})}"
+                        class="page-link">Next</a>
+                <a th:unless="${allEvents.hasNext()}"
+                        class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#">Last</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 </body>
