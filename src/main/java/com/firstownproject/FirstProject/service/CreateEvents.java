@@ -49,6 +49,7 @@ public class CreateEvents {
                     List<String> currentEvent = List.of(line.split("_"));
 
                     EventEntity newEvent = new EventEntity().
+                            setName(currentEvent.get(0)).
                             setAddress(currentEvent.get(1)).
                             setDate(formatter.parse(currentEvent.get(2))).
                             setDescription(currentEvent.get(3)).

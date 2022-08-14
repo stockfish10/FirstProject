@@ -8,6 +8,8 @@ public class TownViewDTO {
 
     private String description;
 
+    private String picture;
+
     public Long getId() {
         return id;
     }
@@ -32,6 +34,15 @@ public class TownViewDTO {
 
     public TownViewDTO setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public TownViewDTO setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

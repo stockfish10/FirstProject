@@ -12,6 +12,8 @@ import java.util.List;
 @Table(name = "events")
 public class EventEntity extends BaseEntity {
 
+    private String name;
+
     @ManyToOne
     private CountryEntity country;
 
@@ -125,6 +127,15 @@ public class EventEntity extends BaseEntity {
 
     public EventEntity setPicture(String picture) {
         this.picture = picture;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public EventEntity setName(String name) {
+        this.name = name;
         return this;
     }
 }

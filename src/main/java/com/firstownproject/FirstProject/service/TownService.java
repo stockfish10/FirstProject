@@ -18,7 +18,7 @@ public class TownService {
     }
 
     public List<TownViewDTO> getTownsForCountry(Long id) {
-        return townRepository.findTownEntitiesByCountry_Id(id).
+        return townRepository.findTownEntitiesByCountryId(id).
                 stream().
                 map(this::map).
                 collect(Collectors.toList());
@@ -30,6 +30,7 @@ public class TownService {
         return townDTO.
                 setId(town.getId()).
                 setName(town.getName()).
-                setDescription(town.getDescription());
+                setDescription(town.getDescription()).
+                setPicture(town.getPicture());
     }
 }

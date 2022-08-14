@@ -21,6 +21,8 @@ public class TownEntity extends BaseEntity{
     @OneToMany
     private List<EventEntity> events = new ArrayList<>();
 
+    private String picture;
+
     public String getName() {
         return name;
     }
@@ -54,6 +56,15 @@ public class TownEntity extends BaseEntity{
 
     public TownEntity setEvents(List<EventEntity> events) {
         this.events = events;
+        return this;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public TownEntity setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

@@ -16,6 +16,7 @@ import java.util.List;
 
 public class EventShowDTO {
 
+    private String name;
 
     private String country;
 
@@ -114,6 +115,15 @@ public class EventShowDTO {
 
     public EventShowDTO setPicture(String picture) {
         this.picture = picture;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public EventShowDTO setName(String name) {
+        this.name = name;
         return this;
     }
 }

@@ -42,7 +42,9 @@ public class EventService {
                 setEventPlace(eventAddDto.getPlace()).
                 setAddress(eventAddDto.getAddress()).
                 setDescription(eventAddDto.getDescription()).
-                setDate(formatter.parse(eventAddDto.getDate()));
+                setDate(formatter.parse(eventAddDto.getDate())).
+                setPicture(setEventPicture(eventAddDto.getType().toString())).
+                setName(eventAddDto.getName());
 
         UserEntity currentUser = userRepository.findByUsername(userDetails.getUsername()).get();
 
@@ -52,7 +54,7 @@ public class EventService {
     }
 
     public List<EventShowDTO> getEventsForTown(Long id) {
-        return eventRepository.findTownByTown_id(id).
+        return eventRepository.findTownByTownId(id).
                 stream().
                 map(this::map).
                 collect(Collectors.toList());
@@ -71,7 +73,8 @@ public class EventService {
                 setOrganizer(eventEntity.getOrganizer().getFullName()).
                 setDescription(eventEntity.getDescription()).
                 setDate(eventEntity.getDate()).
-                setPicture(eventEntity.getPicture());
+                setPicture(eventEntity.getPicture())
+                .setName(eventEntity.getName());
     }
 
     public List<EventShowDTO> getAllEvents() {

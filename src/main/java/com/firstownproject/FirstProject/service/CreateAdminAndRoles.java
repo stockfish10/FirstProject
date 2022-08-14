@@ -45,7 +45,7 @@ public class CreateAdminAndRoles {
                     .setUsername("Admin")
                     .setPassword(passwordEncoder.encode("123456"))
                     .setFirstName("Administrator")
-                    .setLastName("Boss")
+                    .setLastName("Adminov")
                     .setEmail("admin@mail.com")
                     .setUserRoles(roles);
 

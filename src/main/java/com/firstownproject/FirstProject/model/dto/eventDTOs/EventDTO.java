@@ -12,6 +12,9 @@ import javax.validation.constraints.Size;
 public class EventDTO {
 
     @NotNull
+    private String name;
+
+    @NotNull
     private CountryEntity country;
 
     @NotNull
@@ -97,4 +100,12 @@ public class EventDTO {
         return this;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public EventDTO setName(String name) {
+        this.name = name;
+        return this;
+    }
 }
