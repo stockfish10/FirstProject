@@ -18,7 +18,7 @@ public class UserEntity extends BaseEntity{
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> userRoles = new ArrayList<>();
 
     @OneToMany

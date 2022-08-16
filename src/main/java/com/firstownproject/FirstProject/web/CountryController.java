@@ -1,5 +1,6 @@
 package com.firstownproject.FirstProject.web;
 
+import com.firstownproject.FirstProject.exceptions.ResourceNotFoundException;
 import com.firstownproject.FirstProject.model.dto.countryDTOs.CountryDTO;
 import com.firstownproject.FirstProject.service.CountryService;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,10 @@ public class CountryController {
                              Model model){
         CountryDTO country = countryService.getCountry(id);
         model.addAttribute("country", country);
+
+        if (country == null){
+            throw new ResourceNotFoundException(id);
+        }
 
 
         return "country";

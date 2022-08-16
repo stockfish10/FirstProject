@@ -1,5 +1,6 @@
 package com.firstownproject.FirstProject.web;
 
+import com.firstownproject.FirstProject.exceptions.EventNotFoundException;
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventDTO;
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
 import com.firstownproject.FirstProject.service.CountryService;
@@ -7,18 +8,18 @@ import com.firstownproject.FirstProject.service.EventService;
 import com.firstownproject.FirstProject.service.TownService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
 
@@ -38,11 +39,11 @@ public class EventController {
     @ModelAttribute("eventModel")
     public void initUserModel(Model model) {
         model.addAttribute("eventModel", new EventDTO());
-        model.addAttribute("countries", countryService.getAllCountries());
     }
 
     @GetMapping("/events/add")
-    public String addEvent(){
+    public String addEvent(Model model){
+        model.addAttribute("countries", countryService.getAllCountries());
         return "add-event";
     }
 
@@ -51,7 +52,7 @@ public class EventController {
     public String addEvent(@Valid EventDTO eventModel,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
-                           @AuthenticationPrincipal UserDetails userDetails) throws ParseException {
+                           Principal principal) throws ParseException {
 
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("eventModel", eventModel);
@@ -60,7 +61,9 @@ public class EventController {
             return "redirect:/events/add";
         }
 
-        eventService.addEvent(eventModel,userDetails);
+        String username = principal.getName();
+
+        eventService.addEvent(eventModel,username);
         return "redirect:/";
     }
 
@@ -81,4 +84,13 @@ public class EventController {
 
         return "/events";
     }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler({EventNotFoundException.class})
+    public ModelAndView onEventNotFound(EventNotFoundException enfe) {
+        ModelAndView modelAndView = new ModelAndView("event-not-found");
+
+        return modelAndView;
+    }
+
 }

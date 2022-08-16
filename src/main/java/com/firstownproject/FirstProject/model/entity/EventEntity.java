@@ -4,6 +4,7 @@ import com.firstownproject.FirstProject.model.enums.EventPlaceEnum;
 import com.firstownproject.FirstProject.model.enums.EventTypeEnum;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ public class EventEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private EventTypeEnum eventType;
 
+    @Size(min = 50,max = 5000)
     private String description;
 
     @Enumerated(EnumType.STRING)

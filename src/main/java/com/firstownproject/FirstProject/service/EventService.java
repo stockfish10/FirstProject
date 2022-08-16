@@ -5,6 +5,7 @@ import com.firstownproject.FirstProject.model.dto.eventDTOs.EventDTO;
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
 import com.firstownproject.FirstProject.model.entity.EventEntity;
 import com.firstownproject.FirstProject.model.entity.UserEntity;
+import com.firstownproject.FirstProject.respository.CountryRepository;
 import com.firstownproject.FirstProject.respository.EventRepository;
 import com.firstownproject.FirstProject.respository.TownRepository;
 import com.firstownproject.FirstProject.respository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -25,28 +27,31 @@ public class EventService {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final TownRepository townRepository;
+    private final CountryRepository countryRepository;
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-    public EventService(EventRepository eventRepository, UserRepository userRepository, TownRepository townRepository) {
+    public EventService(EventRepository eventRepository, UserRepository userRepository, TownRepository townRepository, CountryRepository countryRepository) {
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
         this.townRepository = townRepository;
+        this.countryRepository = countryRepository;
     }
 
 
-    public void addEvent(EventDTO eventAddDto,UserDetails userDetails) throws ParseException {
+    public void addEvent(EventDTO eventAddDto, String organizerUsername) throws ParseException {
         EventEntity newEvent = new EventEntity().
-                setCountry(eventAddDto.getCountry()).
-                setTown(eventAddDto.getTown()).
+                setCountry(countryRepository.findByTownsId(eventAddDto.getTownId())).
+                setTown(townRepository.findTownById(eventAddDto.getTownId())).
                 setEventType(eventAddDto.getType()).
                 setEventPlace(eventAddDto.getPlace()).
                 setAddress(eventAddDto.getAddress()).
                 setDescription(eventAddDto.getDescription()).
                 setDate(formatter.parse(eventAddDto.getDate())).
                 setPicture(setEventPicture(eventAddDto.getType().toString())).
-                setName(eventAddDto.getName());
+                setName(eventAddDto.getEventName());
 
-        UserEntity currentUser = userRepository.findByUsername(userDetails.getUsername()).get();
+        UserEntity currentUser = userRepository.findByUsername(organizerUsername).get();
+
 
         newEvent.setOrganizer(currentUser);
 

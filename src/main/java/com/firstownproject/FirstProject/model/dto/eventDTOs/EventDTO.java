@@ -1,24 +1,22 @@
 package com.firstownproject.FirstProject.model.dto.eventDTOs;
 
-import com.firstownproject.FirstProject.model.entity.CountryEntity;
-import com.firstownproject.FirstProject.model.entity.TownEntity;
 import com.firstownproject.FirstProject.model.enums.EventPlaceEnum;
 import com.firstownproject.FirstProject.model.enums.EventTypeEnum;
 
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class EventDTO {
 
     @NotNull
-    private String name;
+    @Min(1)
+    private Long townId;
 
-    @NotNull
-    private CountryEntity country;
-
-    @NotNull
-    private TownEntity town;
+    @NotEmpty
+    private String eventName;
 
     @NotNull
     private EventTypeEnum type;
@@ -26,34 +24,17 @@ public class EventDTO {
     @NotNull
     private EventPlaceEnum place;
 
-    @NotNull
-    @Size(min = 50,max = 5000)
+    @NotEmpty
+    @Size(min = 50,max = 5000,message = "Must be between 50 and 5000 characters long.")
     private String description;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 5, max = 50)
     private String address;
 
-    @NotNull
+    @NotEmpty
     private String date;
 
-    public CountryEntity getCountry() {
-        return country;
-    }
-
-    public EventDTO setCountry(CountryEntity country) {
-        this.country = country;
-        return this;
-    }
-
-    public TownEntity getTown() {
-        return town;
-    }
-
-    public EventDTO setTown(TownEntity town) {
-        this.town = town;
-        return this;
-    }
 
     public EventTypeEnum getType() {
         return type;
@@ -100,12 +81,21 @@ public class EventDTO {
         return this;
     }
 
-    public String getName() {
-        return name;
+    public String getEventName() {
+        return eventName;
     }
 
-    public EventDTO setName(String name) {
-        this.name = name;
+    public EventDTO setEventName(String eventName) {
+        this.eventName = eventName;
+        return this;
+    }
+
+    public Long getTownId() {
+        return townId;
+    }
+
+    public EventDTO setTownId(Long townId) {
+        this.townId = townId;
         return this;
     }
 }

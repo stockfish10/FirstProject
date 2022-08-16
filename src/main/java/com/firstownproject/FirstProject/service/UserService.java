@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,15 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper mapper;
-    private final AppUserDetailsService appUserDetailsService;
+    private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
 
-    public UserService(UserRepository userRepository, AppUserDetailsService appUserDetailsService, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository,
+                       UserDetailsService userDetailsService,
+                       PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.appUserDetailsService = appUserDetailsService;
+        this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
         this.mapper = new ModelMapper();
     }
@@ -39,16 +42,14 @@ public class UserService {
         UserEntity newUser = mapper.map(userRegisterDTO, UserEntity.class)
                 .setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
-        userRepository.save(newUser);
-
-        UserDetails userDetails = appUserDetailsService.loadUserByUsername(newUser.getUsername());
+        this.userRepository.save(newUser);
 
         login(newUser);
     }
 
     private void login(UserEntity userEntity) {
         UserDetails userDetails =
-                appUserDetailsService.loadUserByUsername(userEntity.getUsername());
+                userDetailsService.loadUserByUsername(userEntity.getUsername());
 
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(

@@ -1,10 +1,9 @@
 package com.firstownproject.FirstProject.web;
 
 import com.firstownproject.FirstProject.model.dto.userDTOs.UserProfileDTO;
-import com.firstownproject.FirstProject.model.entity.UserEntity;
+
 import com.firstownproject.FirstProject.service.UserService;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -33,13 +33,14 @@ public class SecurityConfiguration {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login","/register").anonymous()
+                .antMatchers("/events","/events/**","/profile").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/")
-                .failureForwardUrl("/login-error");
+                .failureForwardUrl("/login-error")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
@@ -50,8 +51,8 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        return new AppUserDetailsService(userRepository, passwordEncoder);
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
+        return new AppUserDetailsService(userRepository);
     }
 
 }

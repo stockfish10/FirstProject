@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TownRepository extends JpaRepository<TownEntity,Long> {
     List<TownEntity> findTownEntitiesByCountryId(Long id);
+
+    TownEntity findTownById(Long townId);
 }
