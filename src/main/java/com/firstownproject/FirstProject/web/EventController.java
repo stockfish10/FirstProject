@@ -2,15 +2,16 @@ package com.firstownproject.FirstProject.web;
 
 import com.firstownproject.FirstProject.exceptions.EventNotFoundException;
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventDTO;
+import com.firstownproject.FirstProject.model.dto.eventDTOs.EventForProfileDTO;
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
+import com.firstownproject.FirstProject.model.entity.EventEntity;
 import com.firstownproject.FirstProject.service.CountryService;
 import com.firstownproject.FirstProject.service.EventService;
 import com.firstownproject.FirstProject.service.TownService;
+import com.firstownproject.FirstProject.service.UserService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,11 +30,13 @@ public class EventController {
     private final EventService eventService;
     private final CountryService countryService;
     private final TownService townService;
+    private final UserService userService;
 
-    public EventController(EventService eventService, CountryService countryService, TownService townService) {
+    public EventController(EventService eventService, CountryService countryService, TownService townService, UserService userService) {
         this.eventService = eventService;
         this.countryService = countryService;
         this.townService = townService;
+        this.userService = userService;
     }
 
     @ModelAttribute("eventModel")
@@ -83,6 +86,15 @@ public class EventController {
         model.addAttribute("events", eventDTOs);
 
         return "/events";
+    }
+
+    @GetMapping("/events/{id}")
+    public String addEventToList(@PathVariable("id") Long id, Principal principal) {
+        EventEntity eventToAdd = eventService.getEvent(id);
+
+        userService.addEventToUserList(principal,eventToAdd);
+
+        return "redirect:/profile";
     }
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)

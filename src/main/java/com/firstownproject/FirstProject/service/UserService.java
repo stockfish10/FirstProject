@@ -1,6 +1,7 @@
 package com.firstownproject.FirstProject.service;
 
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventForProfileDTO;
+import com.firstownproject.FirstProject.model.dto.userDTOs.ChangeUsernameDTO;
 import com.firstownproject.FirstProject.model.dto.userDTOs.UserProfileDTO;
 import com.firstownproject.FirstProject.model.dto.userDTOs.UserRegisterDTO;
 import com.firstownproject.FirstProject.model.entity.EventEntity;
@@ -16,6 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -90,5 +94,22 @@ public class UserService {
                 setName(event.getName()).
                 setTown(event.getTown().getName()).
                 setCountry(event.getCountry().getName());
+    }
+
+
+    public void addEventToUserList(Principal principal, EventEntity eventToAdd) {
+        UserEntity currentUser = userRepository.findByUsername(principal.getName()).
+                orElseThrow(() -> new UsernameNotFoundException(principal.getName() + "was not found"));
+
+        currentUser.setEvents(List.of(eventToAdd));
+    }
+
+    public void editUsername(Principal principal, ChangeUsernameDTO changeUsernameDTO) {
+        UserEntity currentUser = userRepository.findByUsername(principal.getName()).
+                orElseThrow(() -> new UsernameNotFoundException(principal.getName() + "was not found"));
+
+        currentUser.setUsername(changeUsernameDTO.getUsername());
+
+        userRepository.save(currentUser);
     }
 }

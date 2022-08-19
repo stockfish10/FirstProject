@@ -58,7 +58,7 @@
             <a href="#" class="btn btn-outline-secondary">Check out the event</a>
         </div>
         <div class="col col-5">
-            <a href="#" class="btn btn-outline-secondary">Sign up for the event</a>
+            <a th:href="@{/events/{id}(id = ${id})}" class="btn btn-outline-secondary">Sign up for the event</a>
         </div>
     </div>
 </div>

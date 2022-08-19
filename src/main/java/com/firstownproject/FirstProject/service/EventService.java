@@ -2,6 +2,7 @@ package com.firstownproject.FirstProject.service;
 
 
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventDTO;
+import com.firstownproject.FirstProject.model.dto.eventDTOs.EventForProfileDTO;
 import com.firstownproject.FirstProject.model.dto.eventDTOs.EventShowDTO;
 import com.firstownproject.FirstProject.model.entity.EventEntity;
 import com.firstownproject.FirstProject.model.entity.UserEntity;
@@ -19,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -108,5 +110,9 @@ public class EventService {
             case "travelandoutdoor" -> "/images/travel.jpg";
             default -> "";
         };
+    }
+
+    public EventEntity getEvent(Long id) {
+        return eventRepository.findById(id).get();
     }
 }
